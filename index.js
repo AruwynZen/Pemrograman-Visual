@@ -57,6 +57,10 @@ const createWindowCreator = () => {
     createWindow.on("closed", () => (createWindow = null));
 };
 
+ipcMain.on("appointment::create", (event, appointment) => {
+    console.log(appointment);
+});
+
 const menuTemplate = [{
     label: "File",
     submenu: [{
