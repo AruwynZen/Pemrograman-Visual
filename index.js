@@ -10,6 +10,7 @@ const {
 let todayWindows;
 let creteWindows;
 let listWindow;
+let aboutWindow;
 
 app.on("ready", () => {
     todayWindow = new BrowserWindow({
@@ -36,7 +37,7 @@ const listWindowCreator = () => {
         },
         width: 600,
         height: 400,
-        title: "All Appoinment"
+        title: "All Appointment"
     });
     listWindow.setMenu(null);
     listWindow.loadURL(`file://${__dirname}/list.html`);
@@ -50,7 +51,7 @@ const createWindowCreator = () => {
         },
         width: 600,
         height: 400,
-        title: "Create Appoinment"
+        title: "Create Appointment"
     });
     createWindow.setMenu(null);
     createWindow.loadURL(`file://${__dirname}/create.html`);
@@ -60,6 +61,19 @@ const createWindowCreator = () => {
 ipcMain.on("appointment::create", (event, appointment) => {
     console.log(appointment);
 });
+
+const aboutWindowCreator = () => {
+    aboutWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true
+        },
+        width: 600,
+        height: 400,
+        title: "About Appointment"
+    });
+    aboutWindow.loadURL(`file://${__dirname}/about.html`);
+    aboutWindow.on("closed", () => (aboutWindow = null));
+};
 
 const menuTemplate = [{
     label: "File",
@@ -89,5 +103,13 @@ const menuTemplate = [{
 {
     label: "View",
     submenu: [{ role: "reload" }, { role: "toggledevtools" }]
+},
+
+{
+    label: "About",
+
+    click() {
+        aboutWindowCreator();
+    }
 }
 ]
