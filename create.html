@@ -18,8 +18,8 @@
         <label for="hour">Hour: </label><br />
         <input type="text" name="hour" placeholder="hh:mm" required />
         <br /><br />
-        <label for="symptons">Sysmptons: </label><br>
-        <textarea type="text" name="symptons" required></textarea>
+        <label for="symptoms">Sysmptons: </label><br>
+        <textarea type="text" name="symptoms" required></textarea>
         <br><br>
         <input class="submit" type="submit" />
     </form>
@@ -40,7 +40,7 @@
                 if (form.elements[i].type !== "submit")
                     elements[form.elements[i].name] = form.elements[i].value;
             }
-            ipcRenderer.send("appointment::create", elements);
+            ipcRenderer.send("appointment:create", elements);
         });
     </script>
 </body>
